@@ -1,0 +1,52 @@
+body {
+  background-color: #ddd;
+}
+
+.content {
+  background-color: #eee;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #aaa;
+  border-radius: 10px;
+}
+
+.post-collection {
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bbb;
+  border-radius: 10px;
+}
+
+.post {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bbb;
+  border-radius: 10px;
+}
+
+.post-header {
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #bbb;
+}
+
+.editFrame {
+  background-color: #ddda;
+}
+
+.edit {
+  background-color: #eee;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #aaa;
+  border-radius: 10px;
+}
+
+.button {
+  padding: 8px;
+  background-color: rgb(117, 173, 243);
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+}

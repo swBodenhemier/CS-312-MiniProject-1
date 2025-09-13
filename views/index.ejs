@@ -1,3 +1,49 @@
 <%- include("partials/header.ejs") %>
+<html>
+  <body>
+    <div class="content">
+      <h1>My Blog</h1>
 
-<h1>Welcome to My Blog</h1>
+      <div class="controls">
+        <form action="/newPost" method="POST">
+          <input class="button" type="submit" value="Create new post" />
+        </form>
+      </div>
+      <% if(locals.posts && locals.posts.length > 0) { %>
+      <div class="post-collection">
+        <% posts.forEach((post) => { %>
+        <div class="post">
+          <p class="post-header">
+            <span><%= post.userName %></span><span><%= post.date %></span>
+          </p>
+          <h3 class="post-title"><%= post.title %></h3>
+          <p class="post-body"><%= post.body %></p>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+    <% if(locals.editing && editing) { %>
+    <div class="editFrame">
+      <div class="edit">
+        <h3>Create a new post:</h3>
+        <form action="/addPost" method="POST">
+          <label for="user-selector">
+            Enter Username:
+            <input id="user-selector" name="user" type="text" />
+          </label>
+          <label for="title-selector">
+            Enter title:
+            <input id="title-selector" name="title" type="text" />
+          </label>
+          <label for="body-selector">
+            Enter Post Content:
+            <input id="body-selector" name="body" type="text" />
+          </label>
+          <input class="button" type="submit" value="Publish Post" />
+        </form>
+      </div>
+    </div>
+    <% } %>
+  </body>
+</html>
