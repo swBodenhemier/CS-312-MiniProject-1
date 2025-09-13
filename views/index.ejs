@@ -18,6 +18,24 @@
           </p>
           <h3 class="post-title"><%= post.title %></h3>
           <p class="post-body"><%= post.body %></p>
+          <div class="controls">
+            <form action="/edit" method="POST">
+              <input
+                class="button"
+                type="submit"
+                value="Edit post"
+                name="<%= post.id %>"
+              />
+            </form>
+            <form action="/delete" method="POST">
+              <input
+                class="button"
+                type="submit"
+                value="Delete post"
+                name="<%= post.id %>"
+              />
+            </form>
+          </div>
         </div>
         <% }) %>
       </div>
@@ -30,15 +48,30 @@
         <form action="/addPost" method="POST">
           <label for="user-selector">
             Enter Username:
-            <input id="user-selector" name="user" type="text" />
+            <input
+              id="user-selector"
+              name="user"
+              type="text"
+              class="small-text"
+            />
           </label>
           <label for="title-selector">
             Enter title:
-            <input id="title-selector" name="title" type="text" />
+            <input
+              id="title-selector"
+              name="title"
+              type="text"
+              class="small-text"
+            />
           </label>
           <label for="body-selector">
             Enter Post Content:
-            <input id="body-selector" name="body" type="text" />
+            <input
+              id="body-selector"
+              name="body"
+              type="text"
+              class="large-text"
+            />
           </label>
           <input class="button" type="submit" value="Publish Post" />
         </form>

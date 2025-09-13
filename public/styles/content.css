@@ -3,6 +3,7 @@ body {
 }
 
 .content {
+  font-family: sans-serif;
   background-color: #eee;
   border-style: solid;
   border-width: 2px;
@@ -31,6 +32,11 @@ body {
   border-color: #bbb;
 }
 
+.post-body {
+  padding: 20px;
+  text-align: left;
+}
+
 .editFrame {
   background-color: #ddda;
 }
@@ -45,6 +51,8 @@ body {
 
 .button {
   padding: 8px;
+  width: fit-content;
+  align-self: center;
   background-color: rgb(117, 173, 243);
   border-style: solid;
   border-radius: 5px;
