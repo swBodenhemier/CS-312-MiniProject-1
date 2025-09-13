@@ -58,3 +58,40 @@ body {
   border-radius: 5px;
   border-width: 1px;
 }
+
+.small-text {
+  all: unset;
+  width: 200px;
+  padding: 4px;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: rgb(117, 173, 243);
+  cursor: text;
+}
+.small-text:focus {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: rgb(90, 158, 241);
+  border-color: rgb(90, 158, 241);
+}
+
+.large-text {
+  font-family: sans-serif;
+  width: 400px;
+  height: 200px;
+  padding: 4px;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: rgb(117, 173, 243);
+  cursor: text;
+}
+.large-text:focus {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: rgb(90, 158, 241);
+  border-color: rgb(90, 158, 241);
+}

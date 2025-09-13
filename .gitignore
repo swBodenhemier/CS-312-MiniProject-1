@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 # vs code config directory
 .vscode/
+
+# linter config
+.prettierignore

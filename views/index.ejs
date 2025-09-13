@@ -41,13 +41,13 @@
       </div>
       <% } %>
     </div>
-    <% if(locals.editing && editing) { %>
+    <% if(locals.status && status === "create") { %>
     <div class="editFrame">
       <div class="edit">
         <h3>Create a new post:</h3>
-        <form action="/addPost" method="POST">
-          <label for="user-selector">
-            Enter Username:
+        <form action="/addPost" method="POST" class="edit-form">
+          <label for="user-selector" class="small-text-label">
+            <span>Enter Username: </span>
             <input
               id="user-selector"
               name="user"
@@ -55,8 +55,8 @@
               class="small-text"
             />
           </label>
-          <label for="title-selector">
-            Enter title:
+          <label for="title-selector" class="small-text-label">
+            <span>Enter title: </span>
             <input
               id="title-selector"
               name="title"
@@ -64,19 +64,66 @@
               class="small-text"
             />
           </label>
-          <label for="body-selector">
-            Enter Post Content:
-            <input
+          <label for="body-selector" class="large-text-label">
+            <span>Enter Post Content:</span>
+            <textarea
               id="body-selector"
               name="body"
               type="text"
               class="large-text"
-            />
+            ></textarea>
           </label>
-          <input class="button" type="submit" value="Publish Post" />
+          <div>
+            <input class="button" type="submit" value="Cancel" name="submit">
+            <input class="button" type="submit" value="Confirm" name="submit" />
+          </div>
         </form>
       </div>
     </div>
-    <% } %>
+    <% } %> <% if(locals.status && status === "edit" && locals.postID) { %> <%
+    const post = posts.find(post => post.id === Number(postID)); if(post) {%>
+    <div class="editFrame">
+      <div class="edit">
+        <h3>Edit post:</h3>
+        <form action="/changePost" method="POST" class="edit-form">
+          <div>
+            <label for="user-selector" class="small-text-label">
+              <span>Edit Username: </span>
+              <input
+                id="user-selector"
+                name="user"
+                type="text"
+                class="small-text"
+                value="<%= post.userName %>"
+              />
+            </label>
+            <label for="title-selector" class="small-text-label">
+              <span>Edit title: </span>
+              <input
+                id="title-selector"
+                name="title"
+                type="text"
+                class="small-text"
+                value="<%= post.title %>"
+              />
+            </label>
+          </div>
+          <label for="body-selector" class="large-text-label">
+            <span>Edit Post Content:</span>
+            <textarea
+              id="body-selector"
+              name="body"
+              type="text"
+              class="large-text"
+            ><%= post.body %></textarea>
+          </label>
+          <div>
+            <input class="button" type="submit" value="Cancel">
+            <input class="button" type="submit" value="Confirm" name="<%=post.id%>" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <% }} %>
   </body>
 </html>
