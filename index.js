@@ -13,36 +13,40 @@ app.use(express.static("public"));
 app.use(morgan("dev"));
 
 let posts = [];
+let filter = "-1";
+const tags = ["Tech", "Lifestyle", "Education", "Other"];
 
 app.get("/", (req, res) => {
-  res.render("index.ejs", { posts: posts.slice().reverse(), status: "none" });
+  render(res, "none", null);
 });
 
 app.post("/newPost", (req, res) => {
-  res.render("index.ejs", { posts: posts.slice().reverse(), status: "create" });
+  render(res, "create", null);
 });
 
 app.post("/addPost", (req, res) => {
   if (req.body.submit !== "Cancel") {
-    newPost(req.body.user, req.body.title, req.body.body);
+    console.log(req.body);
+    newPost(req.body.user, req.body.title, req.body.body, req.body.tag);
   }
   res.redirect("/");
 });
 
 app.post("/edit", (req, res) => {
   const postID = Object.keys(req.body)[0];
-  res.render("index.ejs", {
-    posts: posts.slice().reverse(),
-    status: "edit",
-    postID: postID,
-  });
+  render(res, "edit", postID);
+});
+
+app.post("/filter", (req, res) => {
+  filter = req.body.tag;
+  res.redirect("/");
 });
 
 app.post("/changePost", (req, res) => {
   const postID = Object.keys(req.body).filter((key) => !isNaN(Number(key)))[0];
   const post = posts.filter((post) => post.id === Number(postID))[0];
   if (post) {
-    post.date = `edited: ${newDateString(post.id)}`;
+    post.date = `edited: ${newDateString(Date.now())}`;
     post.userName = req.body.user;
     post.title = req.body.title;
     post.body = req.body.body;
@@ -60,7 +64,7 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}.`);
 });
 
-function newPost(user, title, body) {
+function newPost(user, title, body, tag) {
   const postID = Date.now();
   const postObj = {
     id: Number(postID),
@@ -68,6 +72,7 @@ function newPost(user, title, body) {
     date: newDateString(postID),
     title: title && title.length > 0 ? title : "no title",
     body: body && body.length > 0 ? body : "no content",
+    tag: tag,
   };
   posts.push(postObj);
 }
@@ -75,4 +80,16 @@ function newPost(user, title, body) {
 function newDateString(date) {
   const dateObj = new Date(date);
   return `${dateObj.toLocaleDateString()} at ${dateObj.toLocaleTimeString()}`;
+}
+
+function render(res, status, postID) {
+  res.render("index.ejs", {
+    posts: posts
+      .filter((post) => (filter === "-1" ? true : post.tag === filter))
+      .reverse(),
+    status: status,
+    postID: postID,
+    tags: tags,
+    filter: filter,
+  });
 }

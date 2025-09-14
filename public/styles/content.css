@@ -25,6 +25,10 @@ body {
   border-color: #bbb;
   border-radius: 10px;
 }
+.post:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-color: #ababab;
+}
 
 .post-header {
   border-bottom-style: solid;
@@ -32,9 +36,36 @@ body {
   border-color: #bbb;
 }
 
+.tag-0 {
+  border-color: #8a2be2;
+  background-color: #8a2be2aa;
+  color: #eee;
+}
+.tag-1 {
+  border-color: #7fff00;
+  background-color: #7fff00aa;
+  color: #111;
+}
+.tag-2 {
+  border-color: #00ffff;
+  background-color: #00ffffaa;
+  color: #111;
+}
+.tag-3 {
+  border-color: #5f9ea0;
+  background-color: #5f9ea0aa;
+  color: #111;
+}
+
 .post-body {
   padding: 20px;
   text-align: left;
+}
+
+.post-controls {
+  border-top-style: solid;
+  border-width: 1px;
+  border-color: #bbb;
 }
 
 .editFrame {
@@ -57,6 +88,14 @@ body {
   border-style: solid;
   border-radius: 5px;
   border-width: 1px;
+}
+.button:hover {
+  outline-width: 2px;
+  outline-style: solid;
+  border-color: rgb(90, 158, 241);
+  background-color: rgb(90, 158, 241);
+  outline-color: rgb(90, 158, 241);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .small-text {
@@ -94,4 +133,13 @@ body {
   outline-width: 2px;
   outline-color: rgb(90, 158, 241);
   border-color: rgb(90, 158, 241);
+}
+
+select {
+  padding: 4px;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: rgb(117, 173, 243);
 }
