@@ -16,14 +16,17 @@ let posts = [];
 let filter = "-1";
 const tags = ["Tech", "Lifestyle", "Education", "Other"];
 
+// render home page
 app.get("/", (req, res) => {
   render(res, "none", null);
 });
 
+// open create new post popup
 app.post("/newPost", (req, res) => {
   render(res, "create", null);
 });
 
+// add new post and its content, redirect to home
 app.post("/addPost", (req, res) => {
   if (req.body.submit !== "Cancel") {
     console.log(req.body);
@@ -32,16 +35,19 @@ app.post("/addPost", (req, res) => {
   res.redirect("/");
 });
 
+// open edit post popup
 app.post("/edit", (req, res) => {
   const postID = Object.keys(req.body)[0];
   render(res, "edit", postID);
 });
 
+// change the filter and redirect to home
 app.post("/filter", (req, res) => {
   filter = req.body.tag;
   res.redirect("/");
 });
 
+// apply changes from editing then redirect to home
 app.post("/changePost", (req, res) => {
   const postID = Object.keys(req.body).filter((key) => !isNaN(Number(key)))[0];
   const post = posts.filter((post) => post.id === Number(postID))[0];
@@ -54,6 +60,7 @@ app.post("/changePost", (req, res) => {
   res.redirect("/");
 });
 
+// delete post and redirect to home
 app.post("/delete", (req, res) => {
   const postID = Object.keys(req.body)[0];
   posts = posts.filter((post) => post.id !== Number(postID));
@@ -64,6 +71,7 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}.`);
 });
 
+// create a new post object and add it to the posts array
 function newPost(user, title, body, tag) {
   const postID = Date.now();
   const postObj = {
@@ -77,11 +85,13 @@ function newPost(user, title, body, tag) {
   posts.push(postObj);
 }
 
+// create a formated date string
 function newDateString(date) {
   const dateObj = new Date(date);
   return `${dateObj.toLocaleDateString()} at ${dateObj.toLocaleTimeString()}`;
 }
 
+// render the index file with the expected variables
 function render(res, status, postID) {
   res.render("index.ejs", {
     posts: posts
