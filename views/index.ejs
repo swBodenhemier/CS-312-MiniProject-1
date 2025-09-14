@@ -135,8 +135,9 @@
             <label class="select-label">
               Select Category: 
               <select name="tag">
-                <% tags.forEach((tag, index) => { %>
-                  <option value="<%= index %>"><%= tag %></option>
+                <% tags.forEach((tag, index) => { 
+                  let selected = post.tag === `${index}` ? "selected" : ""; %>
+                  <option <%= selected %> value="<%= index %>"><%= tag %></option>
                 <% }) %>
               </select>
             </label>

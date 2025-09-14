@@ -1,13 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
-import morgan from "morgan";
 
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(morgan("dev"));
 
 let posts = [];
 let filter = "-1";
@@ -52,6 +50,7 @@ app.post("/changePost", (req, res) => {
     post.userName = req.body.user;
     post.title = req.body.title;
     post.body = req.body.body;
+    post.tag = req.body.tag;
   }
   res.redirect("/");
 });
