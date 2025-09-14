@@ -29,7 +29,6 @@ app.post("/newPost", (req, res) => {
 // add new post and its content, redirect to home
 app.post("/addPost", (req, res) => {
   if (req.body.submit !== "Cancel") {
-    console.log(req.body);
     newPost(req.body.user, req.body.title, req.body.body, req.body.tag);
   }
   res.redirect("/");
